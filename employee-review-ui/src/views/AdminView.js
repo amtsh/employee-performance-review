@@ -1,9 +1,8 @@
 import React from "react";
 import { Button } from "antd";
-import EmployeeList from "./../components/EmployeeList";
+import EmployeesList from "../containers/EmployeesList.container";
 import ReviewRequestList from "./../components/ReviewRequestList";
-import ReviewList from "./../components/ReviewList";
-import EmployeeForm from "./../components/EmployeeForm";
+import AddEmployeeForm from "./../containers/AddEmployee.container";
 import ReviewForm from "./../components/ReviewForm";
 import "./../App.css";
 import { Link } from "react-router-dom";
@@ -30,12 +29,11 @@ function AdminView() {
           </Button>
         </Link>
       </div>
-      <EmployeeList />
-      <EmployeeForm />
-      <ReviewList />
-      <ReviewForm />
 
+      <EmployeesList />
       <ReviewRequestList />
+      <AddEmployeeForm />
+      <ReviewForm />
     </div>
   );
 }

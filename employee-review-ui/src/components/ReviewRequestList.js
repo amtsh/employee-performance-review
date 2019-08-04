@@ -22,9 +22,9 @@ function ReviewRequestList() {
     {
       title: "Action",
       key: "action",
-      render: (text, record) => (
+      render: record => (
         <span>
-          <a href="javascript:;">Write review</a>
+          <a href={`${record.id}`}>Write review</a>
         </span>
       )
     }

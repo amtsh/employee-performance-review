@@ -33,3 +33,10 @@ body {
   flex-direction: row-reverse;
   margin-bottom: 16px;
 }
+
+.red {
+  color: crimson;
+}
+.green {
+  color: green;
+}
