@@ -1,0 +1,35 @@
+@import "~antd/dist/antd.css";
+
+body {
+  font-size: calc(4px + 2vmin);
+}
+
+.App {
+  /* text-align: center; */
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.App-header {
+  /* background-color: #282c34; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(5px + 2vmin);
+  margin: 20px 0 40px;
+  border-bottom: 1px solid lightgray;
+}
+
+.App-header > h1 {
+  color: crimson;
+}
+
+.Actions-bar {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-bottom: 16px;
+}
