@@ -18,7 +18,7 @@ import {
 
 import http from "./Http.service";
 
-const API_URL = "http://localhost:9000/api";
+const API_URL = `${window.location.href}/api`;
 const API_VERSION = "/v1";
 const EMPLOYEES = "/employees";
 const EMPLOYEES_URL = API_URL + API_VERSION + EMPLOYEES;
