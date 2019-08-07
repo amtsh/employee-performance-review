@@ -30,7 +30,7 @@ import {
 
 import http from "./Http.service";
 
-const API_URL = `${window.location.href}/api`;
+const API_URL = "https://applause-review.herokuapp.com/api";
 const API_VERSION = "/v1";
 const REVIEWS = "/reviews";
 const REVIEWS_URL = API_URL + API_VERSION + REVIEWS;
