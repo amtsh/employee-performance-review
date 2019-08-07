@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { withRouter } from "react-router-dom";
+import { ROUTE_EMPLOYEE_DETAILS_VIEW } from "./../Routes";
 
 import {
   fetchEmployees as fetchEmployeesAction,
@@ -13,13 +15,14 @@ import {
   getEmployeesPending
 } from "../reducers/employees.reducer";
 
-import EmployeesListComponent from "./../components/EmployeeList.component";
+import { EmployeeListComponent } from "./../components";
 
 class EmployeesList extends Component {
   constructor(props) {
     super(props);
 
     this.shouldComponentRender = this.shouldComponentRender.bind(this);
+    this.navToEmployeeDetails = this.navToEmployeeDetails.bind(this);
   }
 
   componentWillMount() {
@@ -34,6 +37,10 @@ class EmployeesList extends Component {
     return true;
   }
 
+  navToEmployeeDetails(payload) {
+    this.props.history.push(ROUTE_EMPLOYEE_DETAILS_VIEW, payload);
+  }
+
   render() {
     const { employees, error, removeEmployee } = this.props;
 
@@ -42,9 +49,10 @@ class EmployeesList extends Component {
     return (
       <div className="employee-list-wrapper">
         {error && <span className="employee-list-error red">{error}</span>}
-        <EmployeesListComponent
+        <EmployeeListComponent
           employees={employees}
           onDelete={removeEmployee}
+          onView={this.navToEmployeeDetails}
         />
       </div>
     );
@@ -66,7 +74,9 @@ const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export default connect(
+const EmployeeListContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(EmployeesList);
+
+export default withRouter(EmployeeListContainer);

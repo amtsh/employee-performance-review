@@ -1,18 +1,10 @@
 import React from "react";
-import { Form, Input, Icon, Button } from "antd";
+import { Form, Input, Icon, Button, Typography } from "antd";
 
-// const formItemLayout = {
-//   labelCol: { span: 8 },
-//   wrapperCol: { span: 8 }
-// };
-// const formTailLayout = {
-//   labelCol: { span: 3 },
-//   wrapperCol: { span: 8, offset: 4 }
-// };
-
+const { Title } = Typography;
 let id = 0;
 
-class ReviewForm extends React.Component {
+class AddReviewFormComponent extends React.Component {
   remove = k => {
     const { form } = this.props;
     // can use data-binding to get
@@ -45,14 +37,17 @@ class ReviewForm extends React.Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         const { keys, names } = values;
-        console.log("Received values of form: ", values);
-        console.log("Merged values:", keys.map(key => names[key]));
+        const reviewers = keys.map(key => names[key]);
+        if (reviewers.length > 0) {
+          this.props.onReviewersSubmit(this.props.forEmail, reviewers);
+        }
       }
     });
   };
 
   render() {
     const { getFieldDecorator, getFieldValue } = this.props.form;
+    const { title } = this.props;
     const formItemLayout = {
       labelCol: {
         xs: { span: 24 },
@@ -105,21 +100,9 @@ class ReviewForm extends React.Component {
 
     return (
       <div>
-        <h1>New Review</h1>
-        <br />
+        <Title level={4}>{title}</Title>
 
         <Form onSubmit={this.handleSubmit}>
-          <Form.Item {...formItemLayout} label="Review for employee: ">
-            {getFieldDecorator("email", {
-              rules: [
-                {
-                  required: true,
-                  message: "Please enter email address"
-                }
-              ]
-            })(<Input placeholder="haruki.murakami@gmail.com" />)}
-          </Form.Item>
-
           {formItems}
           <Form.Item {...formItemLayoutWithOutLabel}>
             <Button type="dashed" onClick={this.add} style={{ width: "60%" }}>
@@ -137,4 +120,4 @@ class ReviewForm extends React.Component {
   }
 }
 
-export default Form.create({ name: "review_form" })(ReviewForm);
+export default Form.create({ name: "review_form" })(AddReviewFormComponent);

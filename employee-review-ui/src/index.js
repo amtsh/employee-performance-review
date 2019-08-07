@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { applyMiddleware, createStore, compose } from "redux";
+import { applyMiddleware, createStore } from "redux";
 import thunk from "redux-thunk";
 import "./index.css";
 import "./App.css";
@@ -11,14 +11,7 @@ import rootReducer from "./reducers";
 import * as serviceWorker from "./serviceWorker";
 
 const middlewares = [thunk];
-const store = createStore(
-  rootReducer,
-  {},
-  compose(
-    applyMiddleware(...middlewares),
-    window.devToolsExtension ? window.devToolsExtension() : f => f
-  )
-);
+const store = createStore(rootReducer, {}, applyMiddleware(...middlewares));
 
 const root = (
   <Provider store={store}>

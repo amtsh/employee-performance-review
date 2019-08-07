@@ -1,5 +1,7 @@
 import React from "react";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, Typography } from "antd";
+
+const { Title } = Typography;
 
 const formItemLayout = {
   labelCol: { span: 4 },
@@ -14,7 +16,7 @@ function hasErrors(fieldsError) {
   return Object.keys(fieldsError).some(field => fieldsError[field]);
 }
 
-class AddEmployeeForm extends React.Component {
+class AddEmployeeFormComponent extends React.Component {
   componentDidMount() {
     // To disabled submit button at the beginning.
     this.props.form.validateFields();
@@ -53,7 +55,9 @@ class AddEmployeeForm extends React.Component {
       <div className="employee-add-wrapper">
         {error && <span className="employee-list-error red">{error}</span>}
 
-        <h1>New Employee</h1>
+        <Title type="secondary" level={2}>
+          New Employee
+        </Title>
         <br />
         <Form onSubmit={this.handleSubmit}>
           <Form.Item
@@ -80,6 +84,10 @@ class AddEmployeeForm extends React.Component {
           >
             {getFieldDecorator("email", {
               rules: [
+                {
+                  type: "email",
+                  message: "Please enter valid email address"
+                },
                 {
                   required: true,
                   message: "Please enter email address"
@@ -109,4 +117,4 @@ class AddEmployeeForm extends React.Component {
   }
 }
 
-export default Form.create({ name: "employee_form" })(AddEmployeeForm);
+export default Form.create({ name: "employee_form" })(AddEmployeeFormComponent);

@@ -1,10 +1,21 @@
 import React from "react";
-import { Table, Divider } from "antd";
+import { Table, Divider, Typography } from "antd";
+
+const { Title } = Typography;
 
 const EmployeeListComponent = props => {
   const onDeleteHandler = id => {
     props.onDelete(id);
   };
+
+  const onViewHandler = id => {
+    props.onView({ employeeId: id });
+  };
+
+  const dataSource = props.employees.map(employee => ({
+    ...employee,
+    key: employee.id
+  }));
 
   const columns = [
     {
@@ -30,7 +41,13 @@ const EmployeeListComponent = props => {
             Delete
           </a>
           <Divider type="vertical" />
-          <a href={`${record.id}`}>View</a>
+          <a
+            onClick={() => {
+              onViewHandler(`${record.id}`);
+            }}
+          >
+            View
+          </a>
         </span>
       )
     }
@@ -38,8 +55,15 @@ const EmployeeListComponent = props => {
 
   return (
     <div>
-      <h1>Employees</h1>
-      <Table dataSource={props.employees} columns={columns} />
+      <Title level={2} type="secondary">
+        Employees
+      </Title>
+      <br />
+      <Table
+        dataSource={dataSource}
+        columns={columns}
+        pagination={{ pageSize: 5 }}
+      />
     </div>
   );
 };

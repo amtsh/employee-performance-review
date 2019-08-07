@@ -37,7 +37,6 @@ export const employeesReducer = (state = initialState, action) => {
         employees: [action.payload, ...state.employees]
       };
     case REMOVE_EMPLOYEE_FROM_LIST:
-      console.log(action.payload);
       return {
         ...state,
         employees: state.employees.filter(e => e.id !== action.payload)

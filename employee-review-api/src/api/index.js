@@ -1,9 +1,11 @@
 import { Router } from 'express'
 import employee from './employee'
+import reviews from './reviews'
 
 const router = new Router()
 
 router.use('/employees', employee)
+router.use('/reviews', reviews)
 
 /**
  * @apiDefine master Master access only

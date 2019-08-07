@@ -10,6 +10,11 @@ import {
   addEmployeeSuccess,
   addEmployeeError
 } from "../actions/AddEmployee.actions";
+import {
+  getEmployeePending,
+  getEmployeeSuccess,
+  getEmployeeError
+} from "../actions/GetEmployee.actions";
 
 import http from "./Http.service";
 
@@ -57,8 +62,29 @@ export const addEmployee = employee => {
         return res;
       })
       .catch(error => {
-        console.log(error);
         dispatch(addEmployeeError("FAILED TO ADD EMPLOYEE"));
+      });
+  };
+};
+
+export const getEmployee = employeeId => {
+  return dispatch => {
+    dispatch(getEmployeePending());
+
+    http
+      .get(EMPLOYEES_URL + `/${employeeId}`)
+      .then(res => res.json())
+      .then(res => {
+        if (res.error) {
+          throw res.error;
+        }
+
+        dispatch(getEmployeeSuccess(res));
+        return res;
+      })
+      .catch(error => {
+        console.log(error);
+        dispatch(getEmployeeError("FAILED TO GET EMPLOYEE"));
       });
   };
 };

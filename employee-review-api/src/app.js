@@ -4,7 +4,6 @@ import mongoose from "./services/mongoose";
 import express from "./services/express";
 import api from "./api";
 
-console.log(apiRoot);
 const app = express(apiRoot, api);
 const server = http.createServer(app);
 
