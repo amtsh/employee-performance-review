@@ -1,20 +1,27 @@
-### Applause tool, for performance reviews
+# Applause tool, for performance reviews
 
 Applause is a tool for performance reviews, where an administrator/manager can assign employees in her team to review an employee. An employee sees assigned reviews and can submit feedback.
 
-##### For Administrator, it allows to
+## Hosting on heroku
+
+- For Administrator user UI - https://applause-team.herokuapp.com/admin
+- For Employee user UI - https://applause-team.herokuapp.com
+
+## Features of the application
+
+#### For Administrator, it allows to
 
 - Add/remove/view employees
 - Add/view performance reviews
 - Assign employees to participate in another employee's performance review
 - View status of reviews, pending/completed
 
-##### For Employee user, it allows to
+#### For Employee user, it allows to
 
 - List of performance reviews requiring feedback
 - Submit feedback
 
-#### Technologies used :
+## Technologies used :
 
 Backend
 
@@ -26,11 +33,11 @@ Frontend
 - React UI library
 - Redux for state management
 
-#### High Level design
+## High Level design
 
 **Client** (React-Redux) => **Rest API** (Nodejs) => **Database** (MongoDB)
 
-##### Frontend :
+#### Frontend :
 
 React is used to build the components that constitute a webpage view for
 
@@ -39,7 +46,7 @@ React is used to build the components that constitute a webpage view for
 
 Redux is used to manage application state. It manages a data store where the data fetched from the API is stored for the components to access.
 
-##### API :
+#### API :
 
 The RESTful API built using Nodejs, exposes CRUD endpoints for the resources Employee, Review.
 
@@ -65,7 +72,7 @@ GET /api/v1/reviews?q_reviewer=employee_email
 DELETE /api/v1/reviews/:review_id
 ```
 
-##### Database :
+#### Database :
 
 ```javascript
 Employee Schema
@@ -84,3 +91,8 @@ Review Schema
   reviewer: Reference to Employee
 }
 ```
+
+## TODO Important Functionality
+
+- Basic authentication mechanism for API to allow exposing it only allowed clients.
+- Delete Review feature in UI
